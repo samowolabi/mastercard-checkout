@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MasterCard Checkout</title>
+
+    <script src="https://ap.gateway.mastercard.com/static/checkout/checkout.min.js" 
+        data-error="errorCallback"
+        data-cancel="cancelCallback">
+    </script>
+    <script>
+        function errorCallback(error) {
+            console.log('error', JSON.stringify(error));
+        }
+        function cancelCallback() {
+            console.log('Payment cancelled');
+        }
+
+        Checkout.configure({
+            session: {
+                id: 'SESSION0002437814880F2154489E52'
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div id="embed-target"> </div>
+    <input type="button" value="Pay with Embedded Page" onclick="Checkout.showEmbeddedPage('#embed-target');" />
+    <input type="button" value="Pay with Payment Page" onclick="Checkout.showPaymentPage();" />
+</body>
+
+</html>
